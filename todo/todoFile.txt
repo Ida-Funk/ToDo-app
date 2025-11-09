@@ -1,2 +1,2 @@
-Hej! 
-Detta �r ett test
+﻿Detta är ett test
+Detta är ytterligare ett test från Postman!!!!!!

@@ -1,10 +1,19 @@
 {
   "profiles": {
     "todo": {
-      "commandName": "Project"
-    },
-    "Container (Dockerfile)": {
-      "commandName": "Docker"
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "http://localhost:5000",
+        "TODO_FILE_PATH": "C:\\Users\\idafu\\source\\repos\\todo\\todo\\todoFile.txt"
+      },
+      "Container (Dockerfile)": {
+        "commandName": "Docker"
+      },
+      "WSL": {
+        "commandName": "WSL2",
+        "distributionName": ""
+      }
     }
-  }
 }

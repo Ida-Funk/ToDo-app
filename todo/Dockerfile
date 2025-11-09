@@ -1,25 +1,32 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# 1 Build
+﻿# 1 Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Kopiera csproj och �terst�ll beroenden
+# Kopiera csproj och återställ beroenden (bättre caching)
 COPY api-service/ToDoAPI.csproj ./api-service/
 RUN dotnet restore ./api-service/ToDoAPI.csproj
 
 # Kopiera resten av koden
 COPY api-service ./api-service
-COPY todoFile.txt ./api-service/todoFile.txt
+COPY todoFile.txt ./todoFile.txt
 
-# Bygg och publicera
+## Bygg och publicera
 WORKDIR /src/api-service
-RUN dotnet publish ToDoAPI.csproj -c Release -o /app/publish 
+RUN dotnet publish ToDoAPI.csproj -c Release -o /app/publish
+ida.
 
-# 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final 
+# 2 Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+
+# Copy app
 COPY --from=build /app/publish .
-COPY --from=build /api-service/todoFile.txt ./todoFile.txt
+
+# projekt-lokal källa (Dockerfile i api-service/)
+COPY --from=build /src/todoFile.txt ./todoFile.txt
+
+
+ENV TODO_FILE_PATH=/app/todoFile.txt
+ENV ASPNETCORE_URLS=http://+:8080
 
 ENTRYPOINT ["dotnet", "ToDoAPI.dll"]
