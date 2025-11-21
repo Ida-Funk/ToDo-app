@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
-using todo.api_service.Data;
+// using todo.api_service.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<FileService>();
