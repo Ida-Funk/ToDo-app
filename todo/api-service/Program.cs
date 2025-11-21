@@ -15,11 +15,11 @@ builder.Services.AddDbContext<AppDBContext>(opts => opts.UseSqlite("Data Source=
 
 var app = builder.Build();
 
-app.MapGet("/app/todo", (AppDBContext dbService) =>
-// app.MapGet("/app/todo", (FileService fileService) =>
+// app.MapGet("/app/todo", (AppDBContext dbService) =>
+app.MapGet("/app/todo", (FileService fileService) =>
 {
-    var result = dbService.GetAllTodosFromDB();
-    // var result = fileService.ReadFromFile();
+    // var result = dbService.GetAllTodosFromDB();
+    var result = fileService.ReadFromFile();
 
     return Results.Text(result);
     // return result;
