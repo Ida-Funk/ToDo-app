@@ -11,7 +11,8 @@ namespace todo.api_service.Services
     {
         private readonly string filePath = config["TODO_FILE_PATH"] ?? Path.Combine(AppContext.BaseDirectory, "todoFile.txt");
 
-        public string ReadFromFile() {
+        public string ReadFromFile()
+        {
             string readText = File.ReadAllText(filePath, Encoding.UTF8);
 
             return readText;
