@@ -11,7 +11,7 @@ using todo.api_service.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<FileService>();
-builder.Services.AddDbContext<AppDBContext>(opts => opts.UseSqlite("Data Source=todos.db"));
+// builder.Services.AddDbContext<AppDBContext>(opts => opts.UseSqlite("Data Source=todos.db"));
 
 var app = builder.Build();
 
